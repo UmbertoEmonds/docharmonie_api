@@ -7,8 +7,8 @@ import java.util.Date;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.umbertoemonds.docharmonie.model.dto.LoginDTO;
-import com.umbertoemonds.docharmonie.model.dto.UtilisateurDTO;
+import com.umbertoemonds.docharmonie.model.dto.in.LoginDTOIn;
+import com.umbertoemonds.docharmonie.model.dto.out.UtilisateurDTOOut;
 import com.umbertoemonds.docharmonie.utils.SecurityConstants;
 
 import org.apache.commons.logging.Log;
@@ -41,16 +41,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
            throws AuthenticationException {
 
         try{
-            
-            LoginDTO loginDTO = new ObjectMapper().readValue(request.getInputStream(), LoginDTO.class);
+            LoginDTOIn loginDTO = new ObjectMapper().readValue(request.getInputStream(), LoginDTOIn.class);
             
             var usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword(), new ArrayList<>());
             var result = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
             
             return result;
         } catch (IOException e){
-
-            throw new RuntimeException("Erreur de sérialisation JSON");
+            throw new RuntimeException("Erreur lors de la lecture et du parsing de la requete: " +  e.getMessage());
         }
    }
 
@@ -58,14 +56,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
            Authentication authResult) throws IOException, ServletException {
 
-            UtilisateurDTO userDetails = (UtilisateurDTO) authResult.getPrincipal();
+            UtilisateurDTOOut userDetails = (UtilisateurDTOOut) authResult.getPrincipal();
 
             String token = JWT.create()
-                        .withSubject(String.valueOf(userDetails.getId())) // possibilité d'envoyer juste un id
+                        .withSubject(String.valueOf(userDetails.getId()))
                         .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                         .sign(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()));
-
-            // option possible d'envoyer le token dans le header, justifier le choix
 
             response.getWriter().write(token);
             response.getWriter().flush();

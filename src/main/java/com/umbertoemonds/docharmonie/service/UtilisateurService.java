@@ -5,7 +5,8 @@ import com.umbertoemonds.docharmonie.repository.UtilisateurRepository;
 import java.util.Optional;
 
 import com.umbertoemonds.docharmonie.model.Utilisateur;
-import com.umbertoemonds.docharmonie.model.dto.UtilisateurDTO;
+import com.umbertoemonds.docharmonie.model.dto.in.UtilisateurDTOIn;
+import com.umbertoemonds.docharmonie.model.dto.out.UtilisateurDTOOut;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,7 +28,7 @@ public class UtilisateurService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public Utilisateur add(UtilisateurDTO userDTO){
+    public Utilisateur add(UtilisateurDTOIn userDTO){
 
         var user = new Utilisateur(userDTO);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -42,7 +43,7 @@ public class UtilisateurService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Utilisateur user = userRepository.findByEmail(username);
-        return new UtilisateurDTO(user);
+        return new UtilisateurDTOOut(user);
     }
 
 }

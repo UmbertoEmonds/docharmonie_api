@@ -35,11 +35,13 @@ public class GrilleController {
 
     @GetMapping()
     public ResponseEntity<List<Grille>> findAll(){
-        UsernamePasswordAuthenticationToken user = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        String userId = user.getName();
 
-        if(userId != null){
-            return ResponseEntity.ok(grilleService.findAllByUserId(Integer.parseInt(userId)));
+        if(SecurityContextHolder.getContext().getAuthentication() instanceof UsernamePasswordAuthenticationToken user){
+            String userId = user.getName();
+
+            if(userId != null){
+                return ResponseEntity.ok(grilleService.findAllByUserId(Integer.parseInt(userId)));
+            }
         }
 
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

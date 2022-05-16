@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GrilleRepository extends JpaRepository<Grille, Long>{
     
-    // le nom de la méthode est interprété comme une clause where par l'ORM
+    // le nom de la méthode est interprété comme une clause where par l'ORM JPA
     List<Grille> findAllByUserId(Integer userId);
 
 }

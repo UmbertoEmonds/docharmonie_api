@@ -1,4 +1,4 @@
-package com.umbertoemonds.docharmonie.model.dto;
+package com.umbertoemonds.docharmonie.model.dto.in;
 
 import java.util.Collection;
 
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginDTO implements UserDetails {
+public class LoginDTOIn implements UserDetails {
 
     private String username;
     private String password;

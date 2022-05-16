@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.Collection;
 
-import com.umbertoemonds.docharmonie.model.dto.UtilisateurDTO;
+import com.umbertoemonds.docharmonie.model.dto.in.UtilisateurDTOIn;
+import com.umbertoemonds.docharmonie.model.dto.out.UtilisateurDTOOut;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,8 +23,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor
 public class Utilisateur implements UserDetails {
     
-    public Utilisateur(UtilisateurDTO utilisateurDTO){
-        this.id = utilisateurDTO.getId();
+    public Utilisateur(UtilisateurDTOIn utilisateurDTO){
         this.email = utilisateurDTO.getEmail();
         this.password = utilisateurDTO.getPassword();
         this.firstname = utilisateurDTO.getFirstname();

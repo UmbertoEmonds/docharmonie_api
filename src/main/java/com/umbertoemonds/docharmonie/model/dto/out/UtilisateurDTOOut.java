@@ -1,4 +1,4 @@
-package com.umbertoemonds.docharmonie.model.dto;
+package com.umbertoemonds.docharmonie.model.dto.out;
 
 import java.util.Collection;
 
@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class UtilisateurDTO implements UserDetails {
+public class UtilisateurDTOOut implements UserDetails {
 
     private long id;
     private String firstname;
@@ -21,7 +21,7 @@ public class UtilisateurDTO implements UserDetails {
     @JsonIgnore
     private String password;
 
-    public UtilisateurDTO(Utilisateur utilisateur){
+    public UtilisateurDTOOut(Utilisateur utilisateur){
         this.id = utilisateur.getId();
         this.firstname = utilisateur.getFirstname();
         this.lastname = utilisateur.getLastname();

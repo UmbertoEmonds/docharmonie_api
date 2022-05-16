@@ -36,7 +36,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         if(token == null) {
             chain.doFilter(request, response);
         }else {
-            UsernamePasswordAuthenticationToken authentication = getAuthentication(request);
+            UsernamePasswordAuthenticationToken authentication = getAuthentication(request, token);
         
             SecurityContextHolder.getContext().setAuthentication(authentication);
             chain.doFilter(request, response);
@@ -44,20 +44,14 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     }
 
-    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request){
-        String token = request.getHeader(SecurityConstants.TOKEN_HEADER);
-
-        if(token != null){
-            String user = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()))
+    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request, String token){
+        String user = JWT.require(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()))
                                 .build()
                                 .verify(token)
                                 .getSubject();
 
-            if(user != null){
-                return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
-            }
-            
-            return null;
+        if(user != null){
+            return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
         }
 
         return null;

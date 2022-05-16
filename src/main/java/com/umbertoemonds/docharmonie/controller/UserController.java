@@ -3,7 +3,8 @@ package com.umbertoemonds.docharmonie.controller;
 import java.util.Optional;
 
 import com.umbertoemonds.docharmonie.model.Utilisateur;
-import com.umbertoemonds.docharmonie.model.dto.UtilisateurDTO;
+import com.umbertoemonds.docharmonie.model.dto.in.UtilisateurDTOIn;
+import com.umbertoemonds.docharmonie.model.dto.out.UtilisateurDTOOut;
 import com.umbertoemonds.docharmonie.security.JWTAuthenticationFilter;
 import com.umbertoemonds.docharmonie.service.GrilleService;
 import com.umbertoemonds.docharmonie.service.UtilisateurService;
@@ -29,17 +30,17 @@ public class UserController {
     private UtilisateurService userService;
 
     @GetMapping()
-    public UtilisateurDTO find(){
+    public UtilisateurDTOOut find(){
         UsernamePasswordAuthenticationToken user = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         String userId = user.getName();
         
         Optional<Utilisateur> utilisateur = userService.findById(Integer.parseInt(userId));
 
-        return new UtilisateurDTO(utilisateur.get());
+        return new UtilisateurDTOOut(utilisateur.get());
     }
 
     @PostMapping()
-    public Utilisateur add(@RequestBody UtilisateurDTO userDTO){
+    public Utilisateur add(@RequestBody UtilisateurDTOIn userDTO){
         return userService.add(userDTO);
     }
 
