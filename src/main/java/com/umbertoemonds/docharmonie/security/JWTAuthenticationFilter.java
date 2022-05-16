@@ -58,8 +58,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
            Authentication authResult) throws IOException, ServletException {
 
+            UtilisateurDTO userDetails = (UtilisateurDTO) authResult.getPrincipal();
+
             String token = JWT.create()
-                        .withSubject(String.valueOf(authResult.getPrincipal())) // possibilité d'envoyer juste un id
+                        .withSubject(String.valueOf(userDetails.getId())) // possibilité d'envoyer juste un id
                         .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                         .sign(Algorithm.HMAC512(SecurityConstants.SECRET.getBytes()));
 

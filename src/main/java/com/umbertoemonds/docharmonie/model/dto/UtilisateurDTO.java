@@ -17,6 +17,8 @@ public class UtilisateurDTO implements UserDetails {
     private String firstname;
     private String lastname;
     private String email;
+
+    @JsonIgnore
     private String password;
 
     public UtilisateurDTO(Utilisateur utilisateur){
@@ -90,7 +92,7 @@ public class UtilisateurDTO implements UserDetails {
         return true;
     }
 
-public void setPassword(String password) {
-    this.password = password;
-}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
