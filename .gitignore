@@ -7,6 +7,7 @@ target/
 ### Sensitive data ###
 src/main/resources/application-dev.properties
 src/main/resources/application.properties
+src/main/java/com/umbertoemonds/docharmonie/utils/SecurityConstants.java
 
 ### STS ###
 .apt_generated
