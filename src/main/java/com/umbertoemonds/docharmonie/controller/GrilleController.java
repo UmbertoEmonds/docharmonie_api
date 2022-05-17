@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.umbertoemonds.docharmonie.model.Accord;
 import com.umbertoemonds.docharmonie.model.Grille;
+import com.umbertoemonds.docharmonie.model.dto.in.GrilleDTOIn;
 import com.umbertoemonds.docharmonie.service.GrilleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.apache.commons.logging.LogFactory;
@@ -29,8 +31,14 @@ public class GrilleController {
     private GrilleService grilleService;
 
     @GetMapping("/{id}")
-    public List<Accord> findAccords(@PathVariable("id") Integer id){
-        return grilleService.findAccordsByGrilleId(id);
+    public ResponseEntity<List<Accord>> findAccords(@PathVariable("id") Integer id){
+        List<Accord> accords = grilleService.findAccordsByGrilleId(id);
+
+        if(accords == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<List<Accord>>(accords, HttpStatus.OK);
     }
 
     @GetMapping()
@@ -40,7 +48,13 @@ public class GrilleController {
             String userId = user.getName();
 
             if(userId != null){
-                return ResponseEntity.ok(grilleService.findAllByUserId(Integer.parseInt(userId)));
+                List<Grille> grilles = grilleService.findAllByUserId(Integer.parseInt(userId));
+
+                if(grilles == null){
+                    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                }
+
+                return ResponseEntity.ok(grilles);
             }
         }
 

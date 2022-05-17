@@ -1,8 +1,5 @@
 package com.umbertoemonds.docharmonie.model.dto.in;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 public class UtilisateurDTOIn {
 
     private String firstname;

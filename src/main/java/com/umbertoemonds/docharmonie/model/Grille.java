@@ -1,5 +1,7 @@
 package com.umbertoemonds.docharmonie.model;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "grille_accord", schema = "docharmonie")
+@Table(name = "grille", schema = "docharmonie")
 public class Grille {
     
     @Id
@@ -18,28 +20,27 @@ public class Grille {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "nom")
+    private String nom;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "tempo")
-    private int tempo;
+    private Integer tempo;
 
-    @Column(name = "note_id")
-    private int noteId;
+    @Column(name = "id_note")
+    private Integer noteId;
 
-    @Column(name = "mode_id")
-    private int modeId;
+    @Column(name = "id_mode")
+    private Integer modeId;
 
-    @Column(name = "style_id")
-    private int styleId;
+    @Column(name = "id_style")
+    private Integer styleId;
 
-    @Column(name = "projet_id")
-    private int projetId;
+    @Column(name = "id_projet")
+    private Integer projetId;
 
-    @Column(name = "utilisateur_id")
-    private int userId;
-
+    @Column(name = "id_user")
+    private Integer userId;
 }

@@ -6,7 +6,6 @@ import com.umbertoemonds.docharmonie.model.Utilisateur;
 import com.umbertoemonds.docharmonie.model.dto.in.UtilisateurDTOIn;
 import com.umbertoemonds.docharmonie.model.dto.out.UtilisateurDTOOut;
 import com.umbertoemonds.docharmonie.security.JWTAuthenticationFilter;
-import com.umbertoemonds.docharmonie.service.GrilleService;
 import com.umbertoemonds.docharmonie.service.UtilisateurService;
 
 import org.springframework.beans.factory.annotation.Autowired;

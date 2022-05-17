@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.umbertoemonds.docharmonie.model.Accord;
 import com.umbertoemonds.docharmonie.model.Grille;
+import com.umbertoemonds.docharmonie.model.dto.in.GrilleDTOIn;
 import com.umbertoemonds.docharmonie.repository.AccordRepository;
 import com.umbertoemonds.docharmonie.repository.GrilleRepository;
 
@@ -27,4 +28,8 @@ public class GrilleService {
         return accordRepository.findAllByGrilleIdOrderByPositionAsc(grilleId);
     }
 
+    public void add(GrilleDTOIn grilleDTOIn){
+        // TODO : ajout d'une grille
+    }
+    
 }

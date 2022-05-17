@@ -31,6 +31,8 @@ public class UtilisateurService implements UserDetailsService {
     public Utilisateur add(UtilisateurDTOIn userDTO){
 
         var user = new Utilisateur(userDTO);
+
+        // encodage du mot de passe avec l'algorithme blowfish
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         return userRepository.save(user);
