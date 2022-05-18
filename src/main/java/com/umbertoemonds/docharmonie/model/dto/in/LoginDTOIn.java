@@ -8,12 +8,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class LoginDTOIn implements UserDetails {
 
     private String username;
     private String password;
+
+    public LoginDTOIn(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+
+    public LoginDTOIn(){}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

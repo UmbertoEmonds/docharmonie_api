@@ -21,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class UtilisateurController {
     
     private final static Log LOG = LogFactory.getLog(JWTAuthenticationFilter.class);
 
