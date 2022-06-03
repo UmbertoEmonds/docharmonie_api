@@ -10,6 +10,7 @@ import com.umbertoemonds.docharmonie.service.UtilisateurService;
 import com.umbertoemonds.docharmonie.utils.SecurityConstants;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -17,24 +18,25 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+@SpringBootTest
 public abstract class AbstractWebTest {
     
-    @Autowired
+    @MockBean
     protected MockMvc mockMvc;
 
-    @MockBean
+    @Autowired
     protected UtilisateurService utilisateurService;
 
-    @MockBean
+    @Autowired
     protected GrilleService grilleService;
 
-    @MockBean
+    @Autowired
     protected AccordRepository accordRepository;
 
-    @MockBean
+    @Autowired
     protected GrilleRepository grilleRepository;
 
-    @MockBean
+    @Autowired
     protected UtilisateurRepository utilisateurRepository;
 
     protected ResultActions login() throws Exception {

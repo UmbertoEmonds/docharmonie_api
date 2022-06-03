@@ -13,6 +13,7 @@ import com.umbertoemonds.docharmonie.utils.SecurityConstants;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -46,8 +47,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             var result = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
             
             return result;
-        } catch (IOException e){
-            throw new RuntimeException("Erreur lors de la lecture et du parsing de la requete: " +  e.getMessage());
+        } catch (Exception e){
+            throw new AuthenticationCredentialsNotFoundException("Erreur: ", e);
         }
    }
 
