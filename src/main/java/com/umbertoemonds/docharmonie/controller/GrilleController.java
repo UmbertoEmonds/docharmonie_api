@@ -5,6 +5,7 @@ import java.util.List;
 import com.umbertoemonds.docharmonie.model.Accord;
 import com.umbertoemonds.docharmonie.model.Grille;
 import com.umbertoemonds.docharmonie.model.dto.in.GrilleDTOIn;
+import com.umbertoemonds.docharmonie.model.dto.out.GrilleDTOOut;
 import com.umbertoemonds.docharmonie.service.GrilleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.apache.commons.logging.LogFactory;

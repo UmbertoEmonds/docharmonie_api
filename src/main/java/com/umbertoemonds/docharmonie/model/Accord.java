@@ -1,5 +1,9 @@
 package com.umbertoemonds.docharmonie.model;
 
+import java.util.List;
+
+import org.hibernate.annotations.Type;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,5 +27,6 @@ public class Accord {
 
     @Column(name = "grille_id")
     private int grilleId;
+    
 }
 
