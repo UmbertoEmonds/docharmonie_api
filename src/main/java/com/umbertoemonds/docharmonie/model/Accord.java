@@ -1,7 +1,5 @@
 package com.umbertoemonds.docharmonie.model;
 
-import java.util.List;
-
 import org.hibernate.annotations.Type;
 
 import jakarta.persistence.Column;
@@ -27,6 +25,9 @@ public class Accord {
 
     @Column(name = "grille_id")
     private int grilleId;
+
+    @Column(name = "demi_tons", columnDefinition = "integer[]")
+    @Type(type = "com.umbertoemonds.docharmonie.utils.CustomIntArrayType")
+    private Integer[] demiTons;
     
 }
-

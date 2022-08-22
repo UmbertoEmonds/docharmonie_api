@@ -4,8 +4,7 @@ import java.util.List;
 
 import com.umbertoemonds.docharmonie.model.Accord;
 import com.umbertoemonds.docharmonie.model.Grille;
-import com.umbertoemonds.docharmonie.model.dto.in.GrilleDTOIn;
-import com.umbertoemonds.docharmonie.model.dto.out.GrilleDTOOut;
+import com.umbertoemonds.docharmonie.model.dto.out.AccordDTOOut;
 import com.umbertoemonds.docharmonie.service.GrilleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.apache.commons.logging.LogFactory;
@@ -39,6 +39,13 @@ public class GrilleController {
         }
 
         return new ResponseEntity<List<Accord>>(accords, HttpStatus.OK);
+    }
+
+    @GetMapping("/generate")
+    public ResponseEntity<List<AccordDTOOut>> generate(@RequestHeader("diversite") String diversite){
+        List<AccordDTOOut> accords = grilleService.generate(diversite);
+
+        return new ResponseEntity<List<AccordDTOOut>>(accords, HttpStatus.OK);
     }
 
     @GetMapping()
