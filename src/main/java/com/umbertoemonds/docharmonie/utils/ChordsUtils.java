@@ -11,7 +11,7 @@ public class ChordsUtils {
         put("maj6", new int[]{4, 7, 11, 9});
         put("maj9", new int[]{4, 7, 11, 2});
         put("maj9(#11)", new int[]{4, 7, 11, 2, 6});
-        put("9",    new int[]{4, 7, 10, 3});
+        put("9",    new int[]{4, 7, 10, 2});
         put("13", new int[]{4, 7, 10, 2, 5, 9});
         put("min", new int[]{3, 7});
         put("min7", new int[]{3, 7, 10});
